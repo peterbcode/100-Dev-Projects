@@ -1,3 +1,3 @@
-Built a simple **Counter App** with HTML, CSS, and JavaScript. Learned how to update the DOM with `textContent`, manage state with a `count` variable, and handle multiple buttons using `querySelectorAll()` and one function.
+Built a simple Counter App using HTML, CSS, and JavaScript. This project helped me understand basic state management with a count variable, updating the UI using textContent, and handling multiple button actions efficiently with querySelectorAll() and an actions object.
 
-Could improve it by adding animations, limits, keyboard controls, or saving the count with localStorage.
+Possible improvements include adding animations, setting minimum/maximum limits, supporting keyboard controls, and persisting the counter using localStorage.
