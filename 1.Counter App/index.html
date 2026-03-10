@@ -54,7 +54,7 @@
 
 <body>
     <div class="app">
-        <div id="display">0</div>
+        <div id="display"></div>
         <div>
             <button id="Increment">+</button>
             <button id="Decrement">-</button>
@@ -62,32 +62,39 @@
         </div>
     </div>
 
-    <script>
-        let count = 0;
-        let display = document.getElementById("display")
+<script>
 
-        function changeDisplay() {
-            display.textContent = count;
-        }
+    // Counter value (changes when buttons are clicked)
+    let count = 0;
 
-        function changeCount(action) {
-            switch (action) {
-                case 'Increment':
-                    count++;
-                    break;
-                case 'Decrement':
-                    count--;
-                    break;
-                case 'Reset':
-                    count = 0;
-                    break;
-            }
-            changeDisplay();
-        }
-        document.querySelectorAll("button").forEach(btn => {
-            btn.addEventListener("click", () => changeCount(btn.id));
+    // Element that shows the counter on screen
+    const display = document.getElementById("display");
+
+    // Actions mapped to button IDs
+    const actions = {
+        Increment: () => count++,  // increase count
+        Decrement: () => count--,  // decrease count
+        Reset: () => count = 0     // reset to 0
+    };
+
+    // Update the number shown in the UI
+    function updateDisplay() {
+        display.textContent = count;
+    }
+
+    // Add click events to all buttons
+    document.querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", () => {
+
+            // Run action matching the button ID
+            actions[button.id]();
+
+            // Refresh display
+            updateDisplay();
         });
-    </script>
+    });
+
+</script>
 </body>
 
 </html>
