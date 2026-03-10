@@ -6,183 +6,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Counter App</title>
     <style>
-        /* --------------------
-           Reset basic styles
-        -------------------- */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box; /* ensures padding/border do not affect element size */
+            box-sizing: border-box;
         }
 
-        /* --------------------
-           Body styling
-        -------------------- */
         body {
-            height: 100vh; /* full viewport height */
-            display: flex; /* use flexbox to center app */
+            height: 100vh;
+            /* full viewport height */
+            display: flex;
+            /* use flexbox to center app */
             justify-content: center;
             align-items: center;
-            background: #0f172a; /* dark background */
-            font-family: 'Segoe UI', sans-serif; /* modern font */
+            background: #0f172a;
+            /* dark background */
+            font-family: 'Segoe UI', sans-serif;
+            /* modern font */
         }
 
-        /* --------------------
-           App container styling
-        -------------------- */
-        .app {
-            background: #1e293b; /* card-like container color */
-            padding: 40px 60px; /* spacing inside container */
-            border-radius: 16px; /* rounded corners */
-            text-align: center;
-            display: flex;
-            flex-direction: column; /* stack elements vertically */
-            align-items: center;
-            gap: 20px; /* spacing between display and buttons */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* subtle shadow for depth */
-        }
-
-        /* --------------------
-           Number display styling
-        -------------------- */
-        #numberDisplay {
-            background: #111827; /* dark display background */
-            color: #f9fafb; /* bright text for contrast */
-            font-size: 3rem; /* large font */
-            font-weight: 700; /* bold text */
-            padding: 20px 50px; /* spacing inside display */
-            border-radius: 12px; /* rounded corners */
-            min-width: 160px; /* consistent width */
-            text-align: center;
-            transition: transform 0.2s; /* smooth scale animation */
-        }
-
-        /* Class added temporarily to animate number */
-        #numberDisplay.animate {
-            transform: scale(1.2); /* slight zoom effect when number changes */
-        }
-
-        /* --------------------
-           Buttons container
-        -------------------- */
-        .buttons {
-            display: flex;
-            gap: 12px; /* spacing between buttons */
-        }
-
-        /* --------------------
-           Button styling
-        -------------------- */
         button {
-            all: unset; /* remove default button styles */
-            cursor: pointer;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
+            background-color: gray;
+            border: 0px solid;
+            font-size: medium;
+            padding: 20px;
+            margin: 5px;
+
+        }
+
+        .app {
+            background-color: navy;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        #display {
+            background-color: black;
             color: white;
-            transition: background 0.3s, transform 0.1s; /* smooth hover/press effects */
-            user-select: none; /* prevent text selection on click */
-        }
+            padding: 10px 100px;
 
-        /* Button press animation */
-        button:active {
-            transform: scale(0.95); /* slightly shrink button on click */
         }
-
-        /* Specific button colors and hover effects */
-        #increment {
-            background: #3b82f6;
-        }
-
-        #increment:hover {
-            background: #2563eb;
-        }
-
-        #decrement {
-            background: #f97316;
-        }
-
-        #decrement:hover {
-            background: #ea580c;
-        }
-
-        #reset {
-            background: #ef4444;
-        }
-
-        #reset:hover {
-            background: #dc2626;
-        }
-
     </style>
 </head>
 
 <body>
     <div class="app">
-        <!-- Display the current number -->
-        <div id="numberDisplay">0</div>
-
-        <!-- Buttons container -->
-        <div class="buttons">
-            <button id="increment">Increment</button>
-            <button id="decrement">Decrement</button>
-            <button id="reset">Reset</button>
+        <div id="display">0</div>
+        <div>
+            <button id="Increment">+</button>
+            <button id="Decrement">-</button>
+            <button id="Reset">Reset</button>
         </div>
     </div>
 
     <script>
-        /* --------------------
-           JavaScript logic
-        -------------------- */
-
-        // Store the current counter value
         let count = 0;
+        let display = document.getElementById("display")
 
-        // Reference to the number display element
-        const display = document.getElementById("numberDisplay");
-
-        // Function to update the number display
-        function updateDisplay() {
-            display.textContent = count; // update the visible number
-
-            // Add animation class for a brief scale effect
-            display.classList.add("animate");
-            setTimeout(() => display.classList.remove("animate"), 150); // remove after 150ms
+        function changeDisplay() {
+            display.textContent = count;
         }
 
-        // Function to change the count based on action
         function changeCount(action) {
             switch (action) {
-                case "increment":
+                case 'Increment':
                     count++;
                     break;
-                case "decrement":
+                case 'Decrement':
                     count--;
                     break;
-                case "reset":
+                case 'Reset':
                     count = 0;
                     break;
             }
-            updateDisplay(); // always update display after changing count
+            changeDisplay();
         }
-
-        // --------------------
-        // Event listeners for buttons
-        // --------------------
-        document.querySelectorAll(".buttons button").forEach(btn => {
+        document.querySelectorAll("button").forEach(btn => {
             btn.addEventListener("click", () => changeCount(btn.id));
         });
-
-        // --------------------
-        // Optional: Keyboard support
-        // ArrowUp = increment, ArrowDown = decrement, 'r' = reset
-        // --------------------
-        document.addEventListener("keydown", e => {
-            if (e.key === "ArrowUp") changeCount("increment");
-            if (e.key === "ArrowDown") changeCount("decrement");
-            if (e.key.toLowerCase() === "r") changeCount("reset");
-        });
-
     </script>
 </body>
 
